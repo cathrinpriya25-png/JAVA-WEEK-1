@@ -1,21 +1,19 @@
-@FunctionalInterface
-interface Fibonacci {
-    int find(int n);
-}
+import java.util.function.IntFunction;
 public class FibonacciLambda {
     public static void main(String[] args) {
-        Fibonacci fib = n -> {
+        // Lambda Expression to find Nth Fibonacci number
+        IntFunction<Integer> fibonacci = n -> {
             if (n <= 1)
                 return n;
-            int a = 0, b = 1, c = 0;
+            int a = 0, b = 1;
             for (int i = 2; i <= n; i++) {
-                c = a + b;
+                int c = a + b;
                 a = b;
                 b = c;
             }
-            return c;
+            return b;
         };
-        System.out.println("5th Fibonacci number: " + fib.find(5));
-        System.out.println("8th Fibonacci number: " + fib.find(8));
+        int n = 7;
+        System.out.println("Fibonacci number at position " + n + " is: " + fibonacci.apply(n));
     }
 }
